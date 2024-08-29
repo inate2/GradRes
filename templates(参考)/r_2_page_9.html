@@ -1,0 +1,69 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+<div class="container mt-4">
+  <p class="fw-bold">表示される記事を読んでください。３分経過後に自動的に次の記事が表示されます。</p>
+  <h1 id="timer"></h1>
+  <iframe src="https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/todokede/koseki-juminhyo/mynumber/ability.html" width="100%" height="1000px"></iframe>
+  <form method="POST" id="submitForm" action="/task_assignments/{{task_assignment_id}}/update">
+    <input type="hidden" name="result_group" value="page_r_2_9" />
+    <input type="hidden" name="callback_url" value="{{callback_url}}" />
+    <input type="hidden" name="current_template_name" value="{{ params['current_template_name'] }}" />
+  </form>
+</div>
+
+<script>
+  var to_timeup = 180
+  var max = 180
+  var intervalid
+  var start_flag = false
+
+  function count_start() {
+    console.log('count_start')
+    if (start_flag === false) {
+      intervalid = setInterval(count_down, 1000)
+      start_flag = true
+    }
+  }
+
+  function count_down() {
+    console.log('count_down')
+    var timer = document.getElementById('timer')
+    if (to_timeup === 0) {
+      timer.innerHTML = 'Time up!'
+      timer.style.color = 'red'
+      const submitForm = document.getElementById('submitForm')
+      if (submitForm) {
+        submitForm.submit()
+      }
+      count_stop()
+    } else {
+      to_timeup--
+      padding()
+    }
+  }
+
+  function padding() {
+    var timer = document.getElementById('timer')
+    var min = 0
+    var sec = 0
+    min = Math.floor(to_timeup / 60)
+    sec = to_timeup % 60
+    min = ('0' + min).slice(-2)
+    sec = ('0' + sec).slice(-2)
+    timer.innerHTML = min + ':' + sec
+  }
+
+  window.onload = function () {
+    padding()
+    count_start()
+  }
+</script>

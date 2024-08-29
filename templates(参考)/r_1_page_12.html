@@ -1,0 +1,211 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+<style>
+  .item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  .item img {
+    max-width: 100px;
+  }
+</style>
+<script>
+  let intervalId
+  const REDIRECT_DELAY = 5 * 60 * 1000
+  const updateTimerDisplay = (remainingTime) => {
+    if (remainingTime <= 180 * 1000) {
+      const submitButton = document.getElementById('submitButton')
+      if (submitButton) {
+        submitButton.disabled = false
+      }
+    }
+    const timeElement = document.getElementById('timer')
+    const minutes = Math.floor(remainingTime / (60 * 1000))
+    const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000)
+
+    // 残り時間をMM:SSの形式で表示する
+    const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+    timeElement.textContent = formattedTime
+  }
+
+  const redirectToNextPage = () => {
+    const timer = document.getElementById('timer')
+
+    timer.innerHTML = 'Time up!'
+    timer.style.color = 'red'
+    const submitForm = document.getElementById('submitForm')
+    if (submitForm) {
+      submitForm.submit()
+    }
+  }
+
+  window.onload = function () {
+    // タイマーの開始時間をセッションストレージから取得する
+    const startTime = sessionStorage.getItem('startTime-search-2')
+
+    // タイマーの開始時間がセッションストレージにない場合は、現在の時間を設定する
+    if (!startTime) {
+      sessionStorage.setItem('startTime-search-2', Date.now().toString())
+      // 5分より少し経過している場合は、残りの時間を計算してリダイレクトする
+      const remainingTime = REDIRECT_DELAY
+      intervalId = setInterval(() => {
+        const elapsedTime = Date.now() - Number(sessionStorage.getItem('startTime-search-2'))
+        const remainingTime = REDIRECT_DELAY - elapsedTime
+        updateTimerDisplay(remainingTime)
+        if (remainingTime <= 0) {
+          clearInterval(intervalId)
+        }
+      }, 1000) // 1秒ごとに表示を更新
+
+      setTimeout(redirectToNextPage, remainingTime)
+    } else {
+      // タイマーの開始時間が存在し、5分以上経過している場合は、次のページにリダイレクトする
+      const elapsedTime = Date.now() - Number(startTime)
+      if (elapsedTime >= REDIRECT_DELAY) {
+        const submitForm = document.getElementById('submitForm')
+        if (submitForm) {
+          submitForm.submit()
+        }
+        return
+      }
+      // 5分より少し経過している場合は、残りの時間を計算してリダイレクトする
+      const remainingTime = REDIRECT_DELAY - elapsedTime
+      intervalId = setInterval(() => {
+        const elapsedTime = Date.now() - Number(sessionStorage.getItem('startTime-search-2'))
+        const remainingTime = REDIRECT_DELAY - elapsedTime
+        updateTimerDisplay(remainingTime)
+        if (remainingTime <= 0) {
+          clearInterval(intervalId)
+        }
+      }, 1000) // 1秒ごとに表示を更新
+
+      setTimeout(redirectToNextPage, remainingTime)
+    }
+  }
+</script>
+<div class="container mt-4">
+  <p class="fw-bold">
+    先程、読んだ2つの記事について、何か気になる点があれば、インターネット検索を行ってください。その際、この画面と違うタブを開いて検索を行うのではなく、この画面の後に表示される本フォーム内の検索画面で検索を行ってください。
+    制限時間は5分ですが、十分に検索を完了できたと感じる場合、3分経過後からは、「検索を終了」ボタンを押すことで、インターネット検索を終了することができます。画面に残り時間を示すタイマーが表示されるので、時間を確認しつつ、検索を行ってください。
+  </p>
+  <h1 id="timer"></h1>
+
+  <form method="POST" id="searchForm" action="/task_assignments/{{task_assignment_id}}/update">
+    <!-- ここで検索ページをループさせるために独自のresultを追加する -->
+    <input type="hidden" name="result_group" value="{{params['result_group']}}" />
+    <input type="hidden" name="callback_url" value="{{callback_url}}" />
+    <input type="hidden" name="current_template_name" value="{{ params['current_template_name'] }}" />
+    <input type="hidden" name="search_word" value="{{ params['search_word'] }}" />
+    {%if params['search_result'] %}
+    <input type="hidden" name="search_result" value="{{ params['search_result'] | tojson }}" />
+    {%else%}
+    <input type="hidden" name="search_result" value="{{ params['search_result'] }}" />
+    {%endif%}
+    <div id="hiddenFieldsContainer"></div>
+    <div class="mb-3">
+      <label for="searchWord" class="form-label">検索ボックス</label>
+      <input type="text" class="form-control" id="searchWord" aria-describedby="emailHelp" />
+      <div id="emailHelp" class="form-text">検索ワードを入力してください</div>
+    </div>
+    <button type="submit" name="action_page_r_1_12" value="action_page_r_1_12" class="btn btn-primary">検索</button>
+  </form>
+
+  {% if params["search_result"] != None %} {% for item in params["search_result"] %}
+  <div class="item">
+    <h2>
+      <a href="{{ item.link }}" target="_blank"> {{ item.title }} </a>
+    </h2>
+    <p>{{ item.snippet }}</p>
+
+    {% if item.pagemap and item.pagemap.cse_thumbnail %}
+    <img src="{{ item.pagemap.cse_thumbnail[0].src }}" alt="Thumbnail" />
+    {% endif %}
+
+    <p>
+      URL:
+      <a href="{{ item.formattedUrl }}" target="_blank">{{ item.formattedUrl }}</a>
+    </p>
+
+    {% if item.labels %}
+    <ul>
+      {% for label in item.labels %}
+      <li>{{ label.displayName }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  {% endfor %} {%endif%}
+
+  <!--次ページに遷移させるためのform-->
+  <form method="POST" id="submitForm" action="/task_assignments/{{task_assignment_id}}/update">
+    <!-- ここで検索ページをループさせるために独自のresultを追加する -->
+    <input type="hidden" name="result_group" value="r_1_page_12" />
+    <input type="hidden" name="callback_url" value="{{callback_url}}" />
+    <input type="hidden" name="current_template_name" value="r_1_page_12" />
+    <input type="hidden" name="search_word" value="{{ params['search_word'] }}" />
+    {%if params['search_result'] %}
+    <input type="hidden" name="search_result" value="{{ params['search_result'] | tojson }}" />
+    {%else%}
+    <input type="hidden" name="search_result" value="{{ params['search_result'] }}" />
+    {%endif%}
+    <div id="hiddenFieldsContainer2"></div>
+
+    <button
+      type="submit"
+      id="submitButton"
+      name="action_page_r_1_8"
+      value="action_page_r_1_8"
+      class="btn btn-danger"
+      disabled
+    >
+      検索を終了
+    </button>
+  </form>
+</div>
+
+<script>
+  const searchForm = document.getElementById('searchForm')
+  if (searchForm) {
+    searchForm.addEventListener('submit', function (event) {
+      const searchWord = document.getElementById('searchWord').value
+      // フォームの現在のactionを取得
+      const currentAction = event.target.action
+      // クエリパラメータを追加
+      const queryParam = 'q=' + encodeURIComponent(searchWord)
+      // 新しいactionを設定
+      event.target.action = currentAction + '?' + queryParam
+    })
+  }
+  const links = document.querySelectorAll('.item a[target="_blank"]')
+  const hiddenFieldsContainer = document.getElementById('hiddenFieldsContainer')
+  const hiddenFieldsContainer2 = document.getElementById('hiddenFieldsContainer2')
+
+  links.forEach((link, index) => {
+    link.addEventListener('click', function () {
+      // 隠しフォームフィールドを動的に作成して値を設定
+      const hiddenInput = document.createElement('input')
+      hiddenInput.type = 'hidden'
+      hiddenInput.name = 'clickedLinks[]'
+      hiddenInput.value = `${index}:${link.href}`
+      const hiddenInput2 = document.createElement('input')
+      hiddenInput2.type = 'hidden'
+      hiddenInput2.name = 'clickedLinks[]'
+      hiddenInput2.value = `${index}:${link.href}`
+      // コンテナに隠しフィールドを追加
+      hiddenFieldsContainer.appendChild(hiddenInput)
+      hiddenFieldsContainer2.appendChild(hiddenInput2)
+    })
+  })
+</script>

@@ -1,0 +1,136 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+
+<div class="container mt-4">
+  <h1 class="mb-4">
+    <font color="#b22222"> 〈実験の実施方法〉 </font>
+  </h1>
+  <div class="mb-4">
+    <table>
+      <tr>
+        <td bgcolor="#fa8072" align="center">
+          <font color="#ffffff"> ①記事を読む(6分) </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <font color="#000000">
+            実験が始まったら、画面上に表示される記事をお読みください。3分経つと自動的に2つ目の記事に切り替わります。</font
+          >
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td bgcolor="#fa8072" align="center">
+          <font color="#ffffff"> ②インターネット検索(5分) </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <font color="#000000">
+            先程、読んだ2つの記事が信頼できるものであるかどうかを判断するため、気になる点について自由に調べてください。その際、この画面と違うタブを開いて検索を行うのではなく、本フォーム内のGoogleサーチエンジンにて検索を行ってください。制限時間は5分ですが、十分に検索を完了できたと感じる場合、3分経過後からは、「検索を終了」ボタンを押すことで、インターネット検索を終了することができます。画面の右上に残り時間を示すタイマーが表示されるので、時間を確認しつつ、検索を行ってください。</font
+          >
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td bgcolor="#fa8072" align="center">
+          <font color="#ffffff"> ③記事を読む(6分) </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <font color="#000000">
+            画面上に表示される記事をお読みください。3分経つと自動的に2つ目の記事に切り替わります。</font
+          >
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td bgcolor="#fa8072" align="center">
+          <font color="#ffffff"> ④インターネット検索(5分) </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <font color="#000000"> 手順は1回目と同様です。 </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td bgcolor="#fa8072" align="center">
+          <font color="#ffffff"> ⑤タスク実施後アンケートへの回答(5分) </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <font color="#000000"> 表示されるURLをクリックしてGoogleフォーム上でアンケートに回答してください。</font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td bgcolor="#fa8072" align="center">
+          <font color="#ffffff"> ⑥メインアンケートへの回答(10分) </font>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <font color="#000000">
+            本日より14日後にクラウドワークスから次のタスクのリクエストを送付します。送付されるタスクは10分程度で完了するアンケートですので、14日後から18日後のお時間のあるタイミングで回答のご協力お願いします。</font
+          >
+        </td>
+      </tr>
+    </table>
+  </div>
+  <form method="POST" action="/task_assignments/{{task_assignment_id}}/update">
+    <input type="hidden" name="result_group" value="page_r_1_3" />
+    <input type="hidden" name="callback_url" value="{{callback_url}}" />
+    <input type="hidden" name="current_template_name" value="{{ params['current_template_name'] }}" />
+    <button type="submit" name="current_template_name" value="r_1_page_1" class="btn btn-secondary">前に戻る</button>
+    &nbsp;<button
+      type="submit"
+      name="current_template_name"
+      value="{{ params['current_template_name'] }}"
+      class="btn btn-primary"
+    >
+      次に進む
+    </button>
+  </form>
+</div>

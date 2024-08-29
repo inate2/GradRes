@@ -1,0 +1,30 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+<div class="container mt-4">
+  <form>
+    <p>グループ2の皆様には、以下のタスクを実施していただきます。</p>
+    <p>
+      ①<font color="#0000cd">記事を読む(6分)</font>:同テーマについて書かれた異なる記事を２つ読んでいただきます。<br />
+      ②<font color="#0000cd">記事を読む(6分)</font
+      >:1つ目のテーマとは別のテーマについて書かれた2つの記事を読んでいただきます。<br />
+      ③<font color="#0000cd">タスク実施後アンケートへの回答(5分)</font>:3問の簡単なアンケートにご協力ください。<br />
+      &nbsp;↓2週間後<br />
+      ④<font color="#0000cd">メインアンケートへの回答(10分)</font>:10分程度のアンケートに答えていただきます。<br />
+    </p>
+    <form method="POST" action="/task_assignments/{{task_assignment_id}}/update">
+      <input type="hidden" name="result_group" value="page_r_2_2" />
+      <input type="hidden" name="callback_url" value="{{callback_url}}" />
+      <input type="hidden" name="current_template_name" value="{{ params['current_template_name'] }}" />
+      <button type="submit" name="action_page_r_2_3" value="action_page_r_2_3">次に進む</button>
+    </form>
+  </form>
+</div>

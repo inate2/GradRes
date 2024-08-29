@@ -1,0 +1,72 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+
+<div class="container mt-4">
+  <h1 class="mb-3">実験終了</h1>
+  <p>記事の閲覧、検索ありがとうございました。</p>
+  <p>
+    本日最後に、３問の簡単なアンケートに回答していただきます。<br />
+    下記のリンクからGoogleフォームに移動して回答へのご協力よろしくお願いします。<br />
+    回答終了後、本画面に戻ってきてください。
+  </p>
+  <p class="fw-bold">
+    アンケートを回答する際に以下の16桁の番号を入力する必要があります。<br />
+    コピーアンドペーストで貼り付けをお願いします。<font color="#FF0000"
+      >こちらの値を正しく記入しないとタスクの完了を承認できません。</font
+    >
+  </p>
+  <p class="fw-bold fs-2 p-4 bg-dark text-white">{{dataitem[1]}}</p>
+
+  <a href="https://forms.gle/CFGoQXBFEThNuCso8" target="_blank" rel="noopener noreferrer" class="fw-bold fs-4"
+    >Googleフォームへ移動</a
+  >
+
+  <form id="form_page_3" method="POST" action="/task_assignments/{{task_assignment_id}}/update">
+    <input type="hidden" name="result_group" value="page_r_1_13" />
+    <input type="hidden" name="callback_url" value="{{callback_url}}" />
+    <input type="hidden" name="current_template_name" value="{{ params['current_template_name'] }}" />
+    <p>
+      Googleフォームへの回答を完了した方は、下記のボックスにチェックを入れて、次へお進みください。<br /><br />
+      <input
+        type="checkbox"
+        id="page_r_1_page_13_checkbox_1"
+        name="page_r_1_page_13_checkbox_1"
+        class="form-check-input"
+        autocomplete="off"
+        onchange="checkSelection()"
+      />
+      <label for="page_r_1_page_13_checkbox_1">アンケートに回答しました。 </label>
+    </p>
+
+    <button
+      type="submit"
+      id="action_page_r_1_14"
+      name="action_page_r_1_14"
+      value="action_page_r_1_14"
+      class="btn btn-primary"
+      disabled="disabled"
+    >
+      次に進む
+    </button>
+  </form>
+</div>
+<script>
+  function checkSelection() {
+    const checkbox1 = document.getElementById('page_r_1_page_13_checkbox_1').checked
+    const submitButton = document.getElementById('action_page_r_1_14')
+    if (checkbox1) {
+      submitButton.disabled = false
+    } else {
+      submitButton.disabled = true
+    }
+  }
+</script>

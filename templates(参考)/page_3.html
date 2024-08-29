@@ -1,0 +1,73 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+
+<div class="container mt-4">
+  <h1 style="mb-2">実験前の注意事項</h1>
+  <p>
+    以上の説明を読み、実験にご協力いただける場合は、以下の項目にチェックをお付けの上、先にお進みください。<br />
+    この画面より先へ進むことをもって、実験内容にご了解いただけたものとさせていただきます。
+  </p>
+
+  <ol class="list-group list-group-numbered">
+    <li class="list-group-item">私は、本研究および実験の目的と、実験の方法について説明を受け、理解しました。</li>
+    <li class="list-group-item">
+      私は、本研究および実験の参加は任意であり、実験終了後であってもいつでも辞退できることを理解しました。
+    </li>
+    <li class="list-group-item">
+      私は、本研究および実験における個人情報の取り扱い、並びに個人情報保護のための対策について説明を受け、それに同意します。
+    </li>
+    <li class="list-group-item">
+      私は、実験においてインターネット検索ログデータが収集され、それが本研究へ使用されることに同意します。
+    </li>
+    <li class="list-group-item">
+      私は、実験においてアンケート回答が収集され、それが本研究へ使用されることに同意します。
+    </li>
+    <li class="list-group-item">私は、本研究および実験に自らの自由な意志で参加することに同意します。</li>
+  </ol>
+  <br />
+  <form id="form_page_3" method="POST" action="/task_assignments/{{task_assignment_id}}/update">
+    <input type="hidden" name="result_group" value="page_3" />
+    <input type="hidden" name="callback_url" value="{{callback_url}}" />
+    <input type="hidden" name="current_template_name" value="{{ params['current_template_name'] }}" />
+    <p>
+      <input
+        type="checkbox"
+        name="page_3_checkbox_1"
+        class="form-check-input"
+        id="page_3_checkbox_1"
+        autocomplete="off"
+        onchange="checkSelection()"
+      />
+      <label for="page_3_checkbox_1" class="form-check-label">私は、以上の内容を理解し、実験参加に同意します。 </label>
+    </p>
+    <p>
+      <input type="checkbox" class="form-check-input" name="page_3_checkbox_2" id="page_3_checkbox_2" />
+      <label for="page_3_checkbox_2" class="form-check-label">
+        《任意》学会等で本研究の成果が発表された場合に、その情報をメールで受け取ることを希望します。
+      </label>
+    </p>
+    <button type="submit" class="btn btn-primary" id="submitButton" value="action_page_4" name="action_page_4" disabled>
+      次に進む
+    </button>
+  </form>
+  <script>
+    function checkSelection() {
+      const checkbox1 = document.getElementById('page_3_checkbox_1').checked
+      const submitButton = document.getElementById('submitButton')
+      if (checkbox1) {
+        submitButton.disabled = false
+      } else {
+        submitButton.disabled = true
+      }
+    }
+  </script>
+</div>
