@@ -21,6 +21,9 @@
       border: 2px solid #333;
       text-align: center;
   }
+  .down {
+    margin: 20px 0 20px 0;
+}
   .search-container{
       margin: 10px 0 10px 0;
   }
@@ -37,7 +40,7 @@
   // ページが読み込まれたときにタイマーを開始
   window.onload = function() {
       // 制限時間（秒）
-      const timeLimit = 420; // 例: 2分 = 120秒
+      const timeLimit = 60; // 例: 2分 = 120秒
 
       // 残り時間を表示するための要素を取得
       const timerElement = document.getElementById('timer');
@@ -62,7 +65,7 @@
           // タイマーがゼロになったらページを遷移
           if (timeRemaining < 0) {
               clearInterval(countdownInterval);
-              window.location.href = "templates/page_10.html";
+              window.location.href = "../page_21.html";
           }
       }, 1000); // 1秒ごとに実行
   };
@@ -71,26 +74,35 @@
 <body>
 
 <div class="container mt-4">
+
   <p>
-    以下の単語を入力し、インターネット検索を行ってください。<br>
-
-        <!-- 枠の要素 -->
-        <div class="center-box">
-          <h1>風邪  ネギ  首</h1>
-        </div>
-
-    制限時間は7分になります。制限時間を過ぎると、次のページに自動的に遷移します。
+    以下の検索窓に、単語を登録したときのユーザ名およびグループ名を打ち込んでください。<br>
+    検索すると、2週間前の実験で検索した単語が表示されます。<br>
+    約1分単語を閲覧し、アンケートへご回答ください。<br>
   </p>
 
-  <h2><span id="timer">07:00</span></h2>
+  <h2><span id="timer">01:00</span></h2>
 
   <div class="search-container">
-    <form id="search-form">
-        <input type="text" id="query" placeholder="検索キーワードを入力">
-        <input type="submit" value="検索">
+
+    <form action="/get" method="get">
+        <div class="mb-3">
+
+        <form id="search-form">
+            <input type="text" id="query" placeholder="ユーザ名を入力"><br>
+            <label for="group">グループ</label> <br> <br>
+            <select id="group" name="group" class="choice" required>
+                <option value="">--選択してください--</option>
+                <option value="group1">グループ1</option>
+                <option value="group2">グループ2</option>
+                <option value="group3">グループ3</option>
+                <option value="group4">グループ4</option>
+            </select>
+            <input type="submit" value="検索">
+        </form>
+
     </form>
   </div>
-
   <div id="results"></div>
 
 </div>
