@@ -6,4 +6,4 @@ app.config.from_object('conf_eval.config')
 
 db = SQLAlchemy(app)  # 追加
 
-import conf_eval.views
+import conf_eval.testapp.views

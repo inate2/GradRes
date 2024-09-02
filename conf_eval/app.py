@@ -202,10 +202,15 @@ def queryform_post():
         elif form_theme == 2:
             return render_template('page_7.html')
 
+@app.route('/page_17')
+def employee_list():
+    seaque_saved = search_query.query.all()
+    return render_template('que_dis/query_list.html', seaque_saved=seaque_saved)
+
 @app.route('/page_17/<user_name>')
 def query_detail(user_name):
-    query_saved = search_query.query.get(user_name)
-    return render_template('conf_eval/templates/query_detail.html', query_saved=query_saved)
+    seaque_saved = search_query.query.get(user_name)
+    return render_template('que_dis/query_detail.html', seaque_saved=seaque_saved)
 
 
 """

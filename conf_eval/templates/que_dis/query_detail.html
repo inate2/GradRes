@@ -10,12 +10,8 @@
   crossorigin="anonymous"
 ></script>
 
-{% extends "layout.html" %}
-
-{% block content %}
-
 <div class="container mt-4">
-  <h2>検索単語</h2>
+  <h2>検索した単語一覧</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -25,11 +21,9 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">{{ query_saved.theme }}</th>
-        <td>{{ query_saved.query_saved }}</td>
+        <th scope="row">{{ seaque_saved.theme }}</th>
+        <td>{{ seaque_saved.query_saved }}</td>
       </tr>
     </tbody>
   </table>
 </div>
-
-{% endblock %}
