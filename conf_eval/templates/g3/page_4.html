@@ -97,23 +97,25 @@
   <h2><span id="timer">05:00</span></h2>
 
 
-  <form action="/query_save" method="post">
-    <div class="query_container mb-3">
+  <div class="query_container mb-3">
 
-      <select id="theme" name="theme" class="choice" required>
-          <option value="">--テーマ--</option>
-          <option value="1">テーマ1</option>
-          <option value="2">テーマ2</option>
-      </select>
+    <form action="/queryform_post" method="post">
 
-      <input type="text" id="username" placeholder="お名前（ニックネーム）" name="username" maxlength="16" class="form-control" aria-describedby="emailHelp" required>
+        <select id="theme" name="theme" class="choice" required>
+            <option value="">--テーマ--</option>
+            <option value="1">テーマ1</option>
+            <option value="2">テーマ2</option>
+        </select>
 
-      <input type="text" id="search_query" placeholder="検索単語" name="search_query" maxlength="100" class="form-control" aria-describedby="emailHelp" required>
+        <input name="username" type="text" id="username" placeholder="お名前（ニックネーム）"  maxlength="16" class="form-control" aria-describedby="emailHelp" required></input>
 
-      <input class="btn btn-outline-primary" type="submit" value="送信">
+        <input name="query_saved" type="text" id="query_saved" placeholder="検索単語"  maxlength="200" class="form-control" aria-describedby="emailHelp" required></input>
 
-    </div>
-  </form>
+        <button type="submit" class="btn btn-outline-primary" value="追加">単語追加</button>
+
+    </form>
+
+  </div>
 
 
   <div class="search-container">

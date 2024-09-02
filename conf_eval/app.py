@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for
 import mysql.connector
 
+from conf_eval import db
+
 app = Flask(__name__)
 
 # データベース接続情報
@@ -177,6 +179,36 @@ def index():
     return render_template('templates/g4/page_17.html')
 
 
+@app.route('/queryform_post', methods=['GET', 'POST'])
+def queryform_post():
+    if request.method == 'GET':
+        return render_template('templates/g3/queryform_post.html')
+    if request.method == 'POST':
+        
+        form_theme = request.form.get('theme', type=int)
+        form_name = request.form.get('username')
+        form_query = request.form.get('search_query')
+
+        sea_que = search_query(
+            theme_number=form_theme,
+            user_name=form_name,
+            query_saved=form_query,
+        )
+        db.session.add(sea_que)
+        db.session.commit()
+        
+        if form_theme == 1:
+            return render_template('page_4.html')
+        elif form_theme == 2:
+            return render_template('page_7.html')
+
+@app.route('/page_17/<user_name>')
+def query_detail(user_name):
+    query_saved = search_query.query.get(user_name)
+    return render_template('conf_eval/templates/query_detail.html', query_saved=query_saved)
+
+
+"""
 @app.route('/save', methods=['POST'])
 def save_text():
     # フォームから送信された選択肢とテキストを取得
@@ -206,8 +238,11 @@ def save_text():
     else:
         # 両方のフィールドが入力されていない場合、エラーメッセージを表示
         return "エラー: 選択肢とテキストの両方を入力してください。"
+"""
 
-@app.route('/query_save', methods=['POST'])
+
+"""
+@app.route('/queryform_post', methods=['GET', 'POST'])
 def save_text():
     # フォームから送信された選択肢とテキストを取得
     theme = request.form.get('theme')
@@ -245,3 +280,4 @@ if __name__ == '__main__':
 
     app.debug = True
     app.run(host='localhost', port=8888)
+"""
