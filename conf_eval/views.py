@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 import mysql.connector
-from conf_eval import db
+#from conf_eval import db
+#from conf_eval.models.query_saved import Query
 
 app = Flask(__name__)
 
@@ -13,6 +14,45 @@ db_config = {
     'database': 'grad_res'  # データベース名
 }
 """
+
+
+@app.route('/add_query', methods=['GET', 'POST'])
+def add_query():
+    if request.method == 'GET':
+        return render_template('que_dis/add_query.html')
+    if request.method == 'POST':
+        query = Query(
+            theme_number=1,
+            user_name="マロイタ",
+            query_saved="スーパーフード  健康"
+        )
+        db.session.add(query)
+        db.session.commit()
+        return render_template('que_dis/add_query.html')
+
+
+@app.route('/g1_save', methods=['GET', 'POST'])
+def user_save():
+    if request.method == 'GET':
+        return render_template('g1/common_page_5.html')
+    if request.method == 'POST':
+        form_group = request.form.get('group')
+        form_name = request.form.get('username')
+        user = User(
+            group_selected=form_group,
+            user_name=form_name,
+        )
+        db.session.add(user)
+        db.session.commit()
+        return render_template('g1/common_page_5.html')
+    
+
+@app.route('/')
+def index():
+    return render_template('/g1/common_page_1.html')
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80, debug=True)
 
 
 
@@ -299,6 +339,7 @@ def g4_9():
 
 
 
+"""
 @app.route('/queryform_post', methods=['GET', 'POST'])
 def queryform_post():
     if request.method == 'GET':
@@ -333,7 +374,6 @@ def query_detail(user_name):
     return render_template('que_dis/query_detail.html', seaque_saved=seaque_saved)
 
 
-"""
 @app.route('/save', methods=['POST'])
 def save_text():
     # フォームから送信された選択肢とテキストを取得
@@ -363,10 +403,9 @@ def save_text():
     else:
         # 両方のフィールドが入力されていない場合、エラーメッセージを表示
         return "エラー: 選択肢とテキストの両方を入力してください。"
-"""
 
 
-"""
+
 @app.route('/queryform_post', methods=['GET', 'POST'])
 def save_text():
     # フォームから送信された選択肢とテキストを取得
@@ -400,6 +439,7 @@ def save_text():
     else:
         # 両方のフィールドが入力されていない場合、エラーメッセージを表示
         return "エラー: 選択肢とテキストの両方を入力してください。"
+
 
 if __name__ == '__main__':
 
