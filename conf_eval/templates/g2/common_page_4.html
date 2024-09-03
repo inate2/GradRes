@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+crossorigin="anonymous"
+/>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+crossorigin="anonymous"
+></script>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .btn {
+            margin-top: 20px;      /* 要素の周りに20ピクセルの空白を追加 */
+            margin-bottom: 20px;   /* 要素の周りに20ピクセルの空白を追加 */
+        }
+        .choice {
+            margin-top: 2px;      /* 要素の周りに20ピクセルの空白を追加 */
+            margin-bottom: 2px;   /* 要素の周りに20ピクセルの空白を追加 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+
+        <p>
+            実験にご協力いただきありがとうございます。<br />
+            実験を開始する前に、ご自身のグループも教えてください。<br />
+            また、あわせてお名前（あだ名推奨）を教えてください。
+        </p>
+
+        <form action="/save" method="post">
+            <div class="mb-3">
+
+            <label for="group">グループ</label> <br>
+            <select id="group" name="group" class="choice" required>
+                <option value="">--選択してください--</option>
+                <option value="group1">グループ1</option>
+                <option value="group2">グループ2</option>
+                <option value="group3">グループ3</option>
+                <option value="group4">グループ4</option>
+            </select>
+
+            <br><br>
+
+            <label for="username" class="form-label">お名前（ニックネーム）
+            </label>
+            <input type="text" id="username" name="username" maxlength="16" class="form-control" aria-describedby="emailHelp" required>
+                <div id="emailHelp" class="form-text">ニックネームを16文字以内で入力してください</div>
+            <input class="btn btn-outline-primary" type="submit" value="送信">
+        </form>
+
+    </div>
+
+</body>
+
+</html>
