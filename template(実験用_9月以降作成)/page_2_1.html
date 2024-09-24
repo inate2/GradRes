@@ -21,6 +21,9 @@
       border: 2px solid #333;
       text-align: center;
   }
+  .down {
+    margin: 20px 0 20px 0;
+}
   .search-container{
       margin: 10px 0 10px 0;
   }
@@ -62,7 +65,7 @@
           // タイマーがゼロになったらページを遷移
           if (timeRemaining < 0) {
               clearInterval(countdownInterval);
-              window.location.href = "page_5.html";
+              window.location.href = "page_2_2.html";
           }
       }, 1000); // 1秒ごとに実行
   };
@@ -72,13 +75,6 @@
 
 <div class="container mt-4">
   <p>
-    以下の単語を入力し、インターネット検索を行ってください。<br>
-
-        <!-- 枠の要素 -->
-        <div class="center-box">
-          <h1>スーパーフード  メリット</h1>
-        </div>
-
     制限時間は5分になります。制限時間を過ぎると、次のページに自動的に遷移します。
   </p>
 
@@ -86,8 +82,7 @@
 
   <div class="search-container">
     <form id="search-form">
-        <input type="text" id="query" placeholder="検索キーワードを入力">
-        <input type="submit" value="検索">
+        <input type="text" id="query" placeholder="糖尿病  予防">
     </form>
   </div>
 
@@ -96,41 +91,7 @@
 </div>
 
 <script>
-    // ここにAPIキーとカスタム検索エンジンIDを入力
-    const apiKey = 'AIzaSyDY1EgAmQVSFQxU9Ww5flOpvsDN_ULsgUI';  // ここに取得したAPIキーを入力
-    const cx = '80b65e876bac54236';  // ここに取得した検索エンジンIDを入力
 
-    document.getElementById('search-form').onsubmit = function(event) {
-        event.preventDefault(); // フォームの送信を防ぐ
-
-        const query = document.getElementById('query').value;
-        const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const resultsDiv = document.getElementById('results');
-                resultsDiv.innerHTML = ''; // 前回の検索結果をクリア
-
-                if (data.items) {
-                    data.items.forEach(item => {
-                        const resultDiv = document.createElement('div');
-                        resultDiv.className = 'result';
-                        resultDiv.innerHTML = `
-                            <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                            <p>${item.snippet}</p>
-                        `;
-                        resultsDiv.appendChild(resultDiv);
-                    });
-                } else {
-                    resultsDiv.innerHTML = '<p>検索結果が見つかりませんでした。</p>';
-                }
-            })
-            .catch(error => {
-                console.error('エラー:', error);
-                document.getElementById('results').innerHTML = '<p>エラーが発生しました。もう一度お試しください。</p>';
-            });
-    };
 </script>
 
 </html>
