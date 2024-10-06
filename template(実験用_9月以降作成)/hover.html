@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画像ホバーでテキスト表示</title>
+  <style>
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* テキストボックスのスタイル */
+    .hover-text {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-size: 14px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* ホバー時にテキストを表示 */
+    .image-container:hover .hover-text {
+      display: block;
+      opacity: 1;
+    }
+
+    /* 画像のスタイル */
+    .image-container img {
+      width: 300px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-container">
+    <img src="stop.png" alt="サンプル画像">
+    <div class="hover-text">
+      1行目のテキスト<br>
+      2行目のテキスト<br>
+      3行目のテキスト<br>
+      4行目のテキスト<br>
+      5行目のテキスト<br>
+      6行目のテキスト<br>
+      7行目のテキスト<br>
+      8行目のテキスト
+    </div>
+  </div>
+
+</body>
+</html>

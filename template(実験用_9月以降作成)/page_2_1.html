@@ -12,34 +12,6 @@
   crossorigin="anonymous"
 ></script>
 
-<style>
-  /* 枠のスタイル */
-  .center-box {
-      margin: 10px 0 10px 0;
-      width: 50%;
-      padding: 10px;
-      border: 2px solid #333;
-      text-align: center;
-  }
-  .down {
-    margin: 20px 0 20px 0;
-}
-  .search-container{
-      margin: 10px 0 10px 0;
-  }
- .midashi{
-    font-size: 28px;
-  }
-  .snip{
-    font-size: 14px;
-  }
-  /* テキストのスタイル */
-  .center-box h1 {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-  }
-</style>
 
 <script>
   // ページが読み込まれたときにタイマーを開始
@@ -76,31 +48,146 @@
   };
 </script>
 
+
+<style>
+  /* 枠のスタイル */
+  .center-box {
+      margin: 10px 0 10px 0;
+      width: 50%;
+      padding: 10px;
+      border: 2px solid #333;
+      text-align: center;
+  }
+  .down {
+    margin: 20px 0 20px 0;
+  }
+
+ .midashi_confident {
+    font-size: 28px;
+    text-align: center;
+  }
+  .snip_confident {
+    font-size: 14px;
+    margin-left: 40px;
+  }
+  .snip_unconfident {
+    font-size: 14px;
+    margin-left: 70px;
+  }
+
+  .midashi {
+    font-size: 28px;
+    text-align: center;
+  }
+  .snip {
+    font-size: 14px;
+  }
+
+  ul {
+    display: flex;
+  }
+  li {
+    display: block;
+  }
+
+  .result_confident {
+    width: 70%;
+  }
+  .result_confident::before {
+    content: '●'; /* 丸のマークを追加 */
+    color: green; /* 緑色を設定 */
+    font-size: 20pt; /* 丸のサイズを20ptに設定 */
+    margin-right: 8px; /* テキストとの間隔を設定 */
+  }
+
+  .result_unconfident {
+    width: 70%;
+  }
+  .result_unconfident::before {
+    margin-right: 5px; /* テキストとの間隔を設定 */
+  }
+
+  .result{
+    width: 70%;
+    margin-left: 30pt;
+  }
+
+  .unconfident_img {
+    width: 60px;
+    height: 60px;
+    margin-right: 5px; /* テキストとの間隔を設定 */
+  }
+
+</style>
+
+
 <body>
 
 <div class="container mt-4">
+  
   <p>
     制限時間は5分になります。制限時間を過ぎると、次のページに自動的に遷移します。
   </p>
 
-  <h2><span id="timer">05:00</span></h2>
+  <h2><span id="timer">05:00</span></h2><br>
 
-  <div class="search-container">
+  <div class="search-container"></div>
     <form id="search-form">
         <input type="text" id="query" placeholder="糖尿病  予防">
+        <input type="submit">
     </form>
-  </div>
+  </div><br>
 
-  <a href="https://www.hokeniryo.metro.tokyo.lg.jp/kensui/tonyo/prevention.html" class="midashi">できることから始めよう 糖尿病予防 - 東京都保健医療局</a><br>
-  <p class="snip">食生活を整えよう. ・適切なエネルギー量と栄養バランスの良い食事を ・飲酒はほどほどに<br>
-  ・朝食をしっかり食べて夕食は控えめに ・野菜を先に、ゆっくりよく噛んで、 ...</p>
+  <ul>
+    <li class="result_confident">
+      <a href="https://www.hokeniryo.metro.tokyo.lg.jp/kensui/tonyo/prevention.html" class="midashi_confident" target="_blank">できることから始めよう 糖尿病予防 - 東京都保健医療局</a><br>
+      <p class="snip_confident">食生活を整えよう. ・適切なエネルギー量と栄養バランスの良い食事を ・飲酒はほどほどに<br>
+      ・朝食をしっかり食べて夕食は控えめに ・野菜を先に、ゆっくりよく噛んで、 ...</p>
+    </li>
+  </ul>
 
-  <div id="results"></div>
+  <ul>
+    <li class="result">
+      <a href="https://www.hokeniryo.metro.tokyo.lg.jp/kensui/tonyo/eatinghabits.html" class="midashi" target="_blank">糖尿病を防ぐ食生活 ～「ちょっと血糖値が高め」の方へ</a><br>
+      <p class="snip">無糖のお茶やコーヒー、ミネラルウォーターなどがおススメ。 ・野菜はたっぷり、食事のたび<br>
+        に食べよう。1日小皿5つが目安。 ・揚げ物や炒め物など、油をたっぷり使った食品 ...</p>
+    </li>
+  </ul>
+
+  <ul>
+    <li class="result_confident">
+      <a href="https://www.pref.kanagawa.jp/docs/cz6/cnt/f533784/index.html" class="midashi_confident" target="_blank">糖尿病対策（県民向け）</a><br>
+      <p class="snip_confident">普段の生活からバランスの良い食事、適度な運動など、未病改善する取組を心がけましょう。<br>
+        糖尿病とは. 糖尿病とは、ブドウ糖を分解し、血糖値を下げるホルモンである「 ...</p>
+    </li>
+  </ul>
+
+  <ul>
+    <li class="result_confident">
+      <a href="https://tsuneda-clinic.com/blog/diabetes-prevention/" class="midashi_confident" target="_blank">糖尿病予防のための生活習慣とは？健康的な未来を築く方法！</a><br>
+      <p class="snip_confident">規則正しい食事は、血糖値の急上昇を防ぎます。いろんな理由で朝食を抜かれる方もいらっし<br>
+      ゃいますが、1日3食を基本としましょう。また、玄米や全粒粉パン、野菜など、血糖 ...</p>
+    </li>
+  </ul>
+
+  <ul>
+    <li class="result_unconfident">
+      <img src="stop.png" alt="" class="unconfident_img">
+      <a href="https://www.minamitohoku.or.jp/up/news/konnichiwa/201203/homeclinic.html" class="midashi" target="_blank">糖尿病にならないために｜総合南東北病院 広報誌こんにちわ</a><br>
+      <p class="snip_unconfident">最も重要な糖尿病予防は、肥満防止、つまり太り過ぎないことです。そのためにも、食事の量<br>
+      と栄養のバランスに気を付けましょう。食事療法は、糖尿病に最も効果のある、基本 ...</p>
+    </li>
+  </ul>
+
+  <ul>
+    <li class="result_confident">
+      <a href="https://www.dm-town.com/therapy/diet/diet_001/" class="midashi_confident" target="_blank">糖尿病になりにくい生活（食事）</a><br>
+      <p class="snip_confident">糖尿病になりにくい食事のポイントや、糖尿病患者さんの食事療法について解説します。<br>
+      DMTOWNでは、糖尿病の治療や予防に関する様々な情報をお届けしています。</p>
+    </li>
+  </ul>
 
 </div>
 
-<script>
-
-</script>
 
 </html>
