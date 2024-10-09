@@ -1,193 +1,117 @@
 <!DOCTYPE html>
 <html lang="ja">
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-  crossorigin="anonymous"
-/>
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-  crossorigin="anonymous"
-></script>
 
 
-<script>
-  // ページが読み込まれたときにタイマーを開始
-  window.onload = function() {
-      // 制限時間（秒）
-      const timeLimit = 300; // 例: 2分 = 120秒
-
-      // 残り時間を表示するための要素を取得
-      const timerElement = document.getElementById('timer');
-
-      // タイマーのカウントダウンを開始
-      let timeRemaining = timeLimit;
-      const countdownInterval = setInterval(function() {
-          // 分と秒に変換
-          const minutes = Math.floor(timeRemaining / 60);
-          const seconds = timeRemaining % 60;
-
-          // 2桁表示を保つためにゼロ埋め
-          const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
-          const displaySeconds = seconds < 10 ? '0' + seconds : seconds;
-
-          // タイマーの表示を更新
-          timerElement.textContent = `${displayMinutes}:${displaySeconds}`;
-
-          // 時間を減少
-          timeRemaining--;
-
-          // タイマーがゼロになったらページを遷移
-          if (timeRemaining < 0) {
-              clearInterval(countdownInterval);
-              window.location.href = "page_2_2.html";
-          }
-      }, 1000); // 1秒ごとに実行
-  };
-</script>
-
-
-<style>
-  /* 枠のスタイル */
-  .center-box {
-      margin: 10px 0 10px 0;
-      width: 50%;
-      padding: 10px;
-      border: 2px solid #333;
-      text-align: center;
-  }
-  .down {
-    margin: 20px 0 20px 0;
-  }
-
- .midashi_confident {
-    font-size: 28px;
-    text-align: center;
-  }
-  .snip_confident {
-    font-size: 14px;
-    margin-left: 40px;
-  }
-  .snip_unconfident {
-    font-size: 14px;
-    margin-left: 70px;
-  }
-
-  .midashi {
-    font-size: 28px;
-    text-align: center;
-  }
-  .snip {
-    font-size: 14px;
-  }
-
-  ul {
-    display: flex;
-  }
-  li {
-    display: block;
-  }
-
-  .result_confident {
-    width: 70%;
-  }
-  .result_confident::before {
-    content: '●'; /* 丸のマークを追加 */
-    color: green; /* 緑色を設定 */
-    font-size: 20pt; /* 丸のサイズを20ptに設定 */
-    margin-right: 8px; /* テキストとの間隔を設定 */
-  }
-
-  .result_unconfident {
-    width: 70%;
-  }
-  .result_unconfident::before {
-    margin-right: 5px; /* テキストとの間隔を設定 */
-  }
-
-  .result{
-    width: 70%;
-    margin-left: 30pt;
-  }
-
-  .unconfident_img {
-    width: 60px;
-    height: 60px;
-    margin-right: 5px; /* テキストとの間隔を設定 */
-  }
-
-</style>
+  <head>
+    <link rel="stylesheet" href="design.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script src="site_action.js" async></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
 
 <body>
-
-<div class="container mt-4">
   
-  <p>
-    制限時間は5分になります。制限時間を過ぎると、次のページに自動的に遷移します。
-  </p>
 
-  <h2><span id="timer">05:00</span></h2><br>
+  <div class="entire_site">
 
-  <div class="search-container"></div>
+
+    <p>
+      制限時間は5分になります。制限時間を過ぎると、次のページに自動的に遷移します。
+    </p>
+
+
+    <h2><span id="timer">05:00</span></h2><br>
+
+
     <form id="search-form">
-        <input type="text" id="query" placeholder="糖尿病  予防">
-        <input type="submit">
-    </form>
-  </div><br>
+      <input type="text" id="query" placeholder="オーストラリア  マラリア予防  必要">
+      <input type="submit">
+    </form><br>
 
-  <ul>
-    <li class="result_confident">
-      <a href="https://www.hokeniryo.metro.tokyo.lg.jp/kensui/tonyo/prevention.html" class="midashi_confident" target="_blank">できることから始めよう 糖尿病予防 - 東京都保健医療局</a><br>
-      <p class="snip_confident">食生活を整えよう. ・適切なエネルギー量と栄養バランスの良い食事を ・飲酒はほどほどに<br>
-      ・朝食をしっかり食べて夕食は控えめに ・野菜を先に、ゆっくりよく噛んで、 ...</p>
-    </li>
-  </ul>
 
-  <ul>
-    <li class="result">
-      <a href="https://www.hokeniryo.metro.tokyo.lg.jp/kensui/tonyo/eatinghabits.html" class="midashi" target="_blank">糖尿病を防ぐ食生活 ～「ちょっと血糖値が高め」の方へ</a><br>
-      <p class="snip">無糖のお茶やコーヒー、ミネラルウォーターなどがおススメ。 ・野菜はたっぷり、食事のたび<br>
-        に食べよう。1日小皿5つが目安。 ・揚げ物や炒め物など、油をたっぷり使った食品 ...</p>
-    </li>
-  </ul>
+    <div class="site_box">
+      <a href="https://www.forth.go.jp/topics/2011/04211417.html" class="midashi" target="_blank">オーストラリアで蚊による病気のリスクが高くなっています。      </a><br>
+      <p class="snip">2011/04/21 — オーストラリアでは、蚊によってうつる風土病（ロスリバーウイルス感染症・バ<br>
+      ーマ森林ウイルス感染症・マレーバレー脳炎など）があります。 ロスリバー ...</p>
+    </div>
 
-  <ul>
-    <li class="result_confident">
-      <a href="https://www.pref.kanagawa.jp/docs/cz6/cnt/f533784/index.html" class="midashi_confident" target="_blank">糖尿病対策（県民向け）</a><br>
-      <p class="snip_confident">普段の生活からバランスの良い食事、適度な運動など、未病改善する取組を心がけましょう。<br>
-        糖尿病とは. 糖尿病とは、ブドウ糖を分解し、血糖値を下げるホルモンである「 ...</p>
-    </li>
-  </ul>
+    <div class="reliability_box">
+      <div class="site_hover">
+        <img src="trust.png">  <!-- ここのみ変更 -->
+        <div class="hover-text">
+          正確性 : 4　|　権威 : 5　|　網羅性 : 4　|　情報鮮度 : 3　|　客観性 : 4<br>
+          信用性 : 4　|　専門性 : 5
+        </div>
+      </div>
+      <div class="result_reliability">
+        <a href="https://www.mofa.go.jp/mofaj/toko/medi/oceania/australia.html" class="midashi_reliability" target="_blank">世界の医療事情 オーストラリア ｜ 外務省
+        </a><br>
+        <p class="snip_reliability">（1）赴任者に必要な予防接種 ... また、海外旅行者等向けのクリニックもあり、黄熱病、腸チ<br>
+        フス、狂犬病等の予防接種のほか、マラリア予防薬の処方や専門的相談も受けられます ...</p>
+      </div>
+    </div>
 
-  <ul>
-    <li class="result_confident">
-      <a href="https://tsuneda-clinic.com/blog/diabetes-prevention/" class="midashi_confident" target="_blank">糖尿病予防のための生活習慣とは？健康的な未来を築く方法！</a><br>
-      <p class="snip_confident">規則正しい食事は、血糖値の急上昇を防ぎます。いろんな理由で朝食を抜かれる方もいらっし<br>
-      ゃいますが、1日3食を基本としましょう。また、玄米や全粒粉パン、野菜など、血糖 ...</p>
-    </li>
-  </ul>
+    <div class="site_box">
+      <a href="https://www.idimsut.jp/didai/kansensho_07.html" class="midashi" target="_blank">［輸入感染症］（熱帯・亜熱帯へ旅行される方へ（よくある ...      </a><br>
+      <p class="snip">特に、すぐに信頼できる医療機関を受診することのできない田舎に行かれるなら、予防内服、<br>
+      またはマラリアの自己治療が必要です。 ... オーストラリア・ニュージーランド以外 ...
+      </p>
+    </div>
 
-  <ul>
-    <li class="result_unconfident">
-      <img src="stop.png" alt="" class="unconfident_img">
-      <a href="https://www.minamitohoku.or.jp/up/news/konnichiwa/201203/homeclinic.html" class="midashi" target="_blank">糖尿病にならないために｜総合南東北病院 広報誌こんにちわ</a><br>
-      <p class="snip_unconfident">最も重要な糖尿病予防は、肥満防止、つまり太り過ぎないことです。そのためにも、食事の量<br>
-      と栄養のバランスに気を付けましょう。食事療法は、糖尿病に最も効果のある、基本 ...</p>
-    </li>
-  </ul>
+    <div class="site_box">
+      <a href="https://www.forth.go.jp/moreinfo/topics/useful_malaria.html" class="midashi" target="_blank">マラリアに注意しましょう！      </a><br>
+      <p class="snip">マラリア流行地へ渡航する際は、抗マラリア薬の予防内服を行うことが望ましいとされていま        <br>
+      す。国内で承認されている予防薬としてマラロン配合錠R（アトバコン・プログアニル ...
+      </p>
+    </div>
 
-  <ul>
-    <li class="result_confident">
-      <a href="https://www.dm-town.com/therapy/diet/diet_001/" class="midashi_confident" target="_blank">糖尿病になりにくい生活（食事）</a><br>
-      <p class="snip_confident">糖尿病になりにくい食事のポイントや、糖尿病患者さんの食事療法について解説します。<br>
-      DMTOWNでは、糖尿病の治療や予防に関する様々な情報をお届けしています。</p>
-    </li>
-  </ul>
+    <div class="reliability_box">
+      <div class="site_hover">
+        <img src="stop.png">  <!-- ここのみ変更 -->
+        <div class="hover-text">
+          正確性 : 4　|　権威 : 5　|　網羅性 : 4　|　情報鮮度 : 3　|　客観性 : 4<br>
+          信用性 : 4　|　専門性 : 5
+        </div>
+      </div>
+      <div class="result_reliability">
+        <a href="https://akashi.clinic/2023/06/23/destinations-and-vaccines/" class="midashi_reliability" target="_blank">海外渡航の推奨ワクチン-国別リスト- | あかし内科クリニック      </a><br>
+        <p class="snip_reliability">2023/06/23 — *アディス・アベバは高所で、マラリアは流行していません。トランジットで空港<br>
+        のみ滞在する場合は予防は不要です。 ※最新情報は 厚生労働省、米国CDC（英語 ...
+        </p>
+      </div>
+    </div>
 
-</div>
+      <div class="reliability_box">
+        <div class="site_hover">
+          <img src="trust.png">  <!-- ここのみ変更 -->
+          <div class="hover-text">
+            正確性 : 4　|　権威 : 5　|　網羅性 : 4　|　情報鮮度 : 3　|　客観性 : 4<br>
+            信用性 : 4　|　専門性 : 5
+          </div>
+        </div>
+        <div class="result_reliability">
+          <a href="http://www.rgmc.izumisano.osaka.jp/wp/wp-content/uploads/2019/01/tvaccine_malariaGuide.pdf" class="midashi_reliability" target="_blank">マラリア予防
+          </a><br>
+          <p class="snip_reliability">[メファキンの特徴]. 肝臓の中にいるマラリア原虫には効果がないため、マラ. リア流行地から離        <br>
+            れて4週間は内服を続ける必要があり. ます。1週間に1回の内服でよいため、 ...
+          </p>
+        </div>
+      </div>
 
+
+  </div>
+
+
+</body>
 
 </html>
