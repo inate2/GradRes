@@ -26,7 +26,7 @@ window.onload = function() {
       // タイマーがゼロになったらページを遷移
       if (timeRemaining < 0) {
           clearInterval(countdownInterval);
-          window.location.href = "page_2_2.html";
+          window.location.href = "g2_page_1_3.html.html";
       }
   }, 1000); // 1秒ごとに実行
 };
