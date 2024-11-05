@@ -1,0 +1,105 @@
+.hover-text {
+  display: none;
+  position: absolute;
+  top: 1%;
+  left: 0;
+  width: 100px;
+  padding: 5px;
+  background-color: rgb(255, 241, 160);
+  font-size: 14px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+/* ホバー時にテキストを表示 */
+.site_hover:hover .hover-text {
+  display: block;
+  opacity: 1;
+}
+.site_hover {
+  position: relative;
+  display: inline-block;
+}
+
+
+.entire_site{
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+
+.site_box{
+  margin-left: 88px;
+}
+.result{
+  width: 70%;
+}
+.midashi {
+  font-size: 24px;
+  text-align: center;
+}
+.snip {
+  font-size: 17px;
+}
+
+
+.reliability_box {
+  display: flex;
+}
+.reliability_box img {
+  width: 60px;
+  height: 60px;
+  margin: 15px 15px 0 6px;
+}
+.result_reliability {
+  margin-left: 5px;
+}
+.midashi_reliability {
+  font-size: 24px;
+  text-align: center;
+}
+.snip_reliability {
+  font-size: 17px;
+}
+
+
+/*
+.confident_box {
+  display: flex;
+}
+.confident_box img {
+  width: 60px;
+  height: 60px;
+  margin: 15px 15px 0 6px;
+}
+.result_confident {
+  margin-left: 5px;
+}
+.midashi_confident {
+  font-size: 24px;
+  text-align: center;
+}
+.snip_confident {
+  font-size: 17px;
+}
+
+
+.unconfident_box {
+  display: flex;
+}
+.unconfident_box img {
+  width: 60px;
+  height: 60px;
+  margin: 15px 15px 0 6px;
+}
+.result_unconfident {
+  margin-left: 5px;
+}
+.midashi_unconfident {
+  font-size: 24px;
+  text-align: center;
+}
+.snip_unconfident {
+  font-size: 17px;
+}
+*/
