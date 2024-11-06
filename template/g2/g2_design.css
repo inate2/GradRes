@@ -1,10 +1,10 @@
 .hover-text {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 1%;
   left: 0;
-  width: 460px;
-  padding: 10px;
+  width: 100px;
+  padding: 5px;
   background-color: rgb(255, 241, 160);
   font-size: 14px;
   border-radius: 5px;
