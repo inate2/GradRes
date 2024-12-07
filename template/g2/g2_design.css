@@ -3,11 +3,11 @@
   position: absolute;
   top: 1%;
   left: 0;
-  width: 100px;
-  padding: 5px;
-  background-color: rgb(255, 241, 160);
-  font-size: 14px;
-  border-radius: 5px;
+  width: 75px;
+  padding: 1px;
+  background-color: linen;
+  font-size: 11px;
+  border-radius: 3px;
   opacity: 0;
   transition: opacity 0.1s;
 }
